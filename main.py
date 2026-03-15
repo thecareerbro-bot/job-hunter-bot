@@ -4,8 +4,6 @@ import time
 from urllib.parse import urljoin, urlparse
 import urllib3
 import os
-from flask import Flask
-from threading import Thread
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -72,18 +70,6 @@ URLS = [
 
 MEMORY_FILE = "bot_memory.txt"
 
-app = Flask(__name__)
-@app.route('/')
-def home():
-    return "Job Hunter Bot is Alive & Running 24/7!"
-
-def run():
-    app.run(host='0.0.0.0', port=8080)
-
-def keep_alive():
-    t = Thread(target=run)
-    t.start()
-
 def load_memory():
     if os.path.exists(MEMORY_FILE):
         with open(MEMORY_FILE, "r") as f:
@@ -99,53 +85,43 @@ def get_clean_filename(url):
     return os.path.basename(path)
 
 def monitor():
-    print("Cloud Monitoring Started... 🚀")
+    print("GitHub Action Scanning Started... 🚀")
     sent_filenames = load_memory()
+    
+    is_first_run = len(sent_filenames) == 0
 
     for url in URLS:
         try:
             headers = {'User-Agent': 'Mozilla/5.0'}
+            # 15 సెకన్ల టైమ్-అవుట్ సెట్ చేశాం. ఓపెన్ అవ్వకపోతే వదిలేసి తర్వాతి సైట్‌కి వెళ్తుంది.
             response = requests.get(url, headers=headers, timeout=15, verify=False)
             soup = BeautifulSoup(response.text, 'html.parser')
+
+            new_updates = []
             for a in soup.find_all('a', href=True):
-                fname = get_clean_filename(urljoin(url, a['href']))
-                if fname and fname not in sent_filenames:
-                    sent_filenames.add(fname)
-                    save_memory(fname)
-        except: 
-            continue
+                full_url = urljoin(url, a['href'])
+                fname = get_clean_filename(full_url)
 
-    print("Initial scanning complete. Watching for NEW job notifications now...")
-
-    while True:
-        for url in URLS:
-            try:
-                headers = {'User-Agent': 'Mozilla/5.0'}
-                response = requests.get(url, headers=headers, timeout=25, verify=False)
-                soup = BeautifulSoup(response.text, 'html.parser')
-
-                new_updates = []
-                for a in soup.find_all('a', href=True):
-                    full_url = urljoin(url, a['href'])
-                    fname = get_clean_filename(full_url)
-
-                    if any(ext in fname.lower() for ext in ['.pdf', '.html', '.aspx']) and fname not in sent_filenames:
-                        if len(fname) > 5:
+                if any(ext in fname.lower() for ext in ['.pdf', '.html', '.aspx']) and fname not in sent_filenames:
+                    if len(fname) > 5:
+                        if not is_first_run: 
                             new_updates.append(full_url)
-                            sent_filenames.add(fname)
-                            save_memory(fname)
+                        sent_filenames.add(fname)
+                        save_memory(fname)
 
-                if new_updates:
-                    links_text = "\n".join(new_updates[:5])
-                    alert = f"📢 <b>కొత్త నోటిఫికేషన్!</b>\n\n<b>సైట్:</b> {url}\n\n<b>లింక్స్:</b>\n{links_text}"
-                    requests.post(f"https://api.telegram.org/bot{TOKEN}/sendMessage", data={"chat_id": CHAT_ID, "text": alert, "parse_mode": "HTML"})
+            if new_updates:
+                links_text = "\n".join(new_updates[:5])
+                alert = f"📢 <b>కొత్త నోటిఫికేషన్!</b>\n\n<b>సైట్:</b> {url}\n\n<b>లింక్స్:</b>\n{links_text}"
+                requests.post(f"https://api.telegram.org/bot{TOKEN}/sendMessage", data={"chat_id": CHAT_ID, "text": alert, "parse_mode": "HTML"})
 
-                time.sleep(3)
-            except: 
-                continue
+        except Exception as e:
+            print(f"Skipping {url} due to timeout/error.")
+            continue
+        
+        # బ్లాక్ అవ్వకుండా, ఒక్కో సైట్‌కి మధ్య 1 సెకను గ్యాప్
+        time.sleep(1)
 
-        time.sleep(600)
+    print("Scanning complete. Exiting successfully. ✅")
 
 if __name__ == "__main__":
-    keep_alive()
     monitor()
