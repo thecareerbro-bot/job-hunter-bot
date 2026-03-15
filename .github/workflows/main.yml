@@ -1,0 +1,26 @@
+name: Job Hunter Bot
+
+on:
+  schedule:
+    - cron: '0 */4 * * *' 
+  workflow_dispatch: 
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Get the Code
+      uses: actions/checkout@v3
+
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install Tools
+      run: |
+        pip install requests beautifulsoup4 flask urllib3
+
+    - name: Start the Bot
+      run: python main.py
