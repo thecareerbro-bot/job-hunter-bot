@@ -2,7 +2,7 @@ name: Job Hunter Bot
 
 on:
   schedule:
-    - cron: '0 */4 * * *' 
+    - cron: '0 4,6,8,10,12,14 * * *' 
   workflow_dispatch: 
 
 jobs:
@@ -20,7 +20,15 @@ jobs:
 
     - name: Install Tools
       run: |
-        pip install requests beautifulsoup4 flask urllib3
+        pip install requests beautifulsoup4 urllib3
 
     - name: Start the Bot
       run: python main.py
+
+    - name: Save Memory
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git add bot_memory.txt
+        git commit -m "Saved new job links to memory" || echo "No new links to save"
+        git push
