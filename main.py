@@ -65,7 +65,15 @@ URLS = [
     "https://nmmc.gov.in/additional-content/Jobs", "https://dmer.maharashtra.gov.in/english/advertisement-2025-26/teaching-contractual/",
     "https://dmer.maharashtra.gov.in/english/advertisement-2025-26/non-teaching-contractual/",
     "https://slprbassam.in/", "https://bescom.karnataka.gov.in/#", "https://csc.gov.in/careers",
-    "https://gsrtc.in/site/downloads/innerPages/recruitment.html"
+    "https://gsrtc.in/site/downloads/innerPages/recruitment.html",
+    "https://scr.indianrailways.gov.in/",
+    "https://scr.onlineregister.org.in/home",
+    "https://www.suratmunicipal.gov.in/Information/RecruitmentDashboard",
+    "https://aweil.in/",
+    "https://www.rrbapply.gov.in/",
+    "https://recruitment.ssb.gov.in/login",
+    "https://ssb.gov.in/recruitmentHome"
+
 ]
 
 MEMORY_FILE = "bot_memory.txt"
