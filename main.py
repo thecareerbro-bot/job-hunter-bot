@@ -72,7 +72,9 @@ URLS = [
     "https://aweil.in/",
     "https://www.rrbapply.gov.in/",
     "https://recruitment.ssb.gov.in/login",
-    "https://ssb.gov.in/recruitmentHome"
+    "https://ssb.gov.in/recruitmentHome",
+    "https://ssb.gov.in/"
+    "https://sanskrit.nic.in/recruitments_notifications.php"
 
 ]
 
