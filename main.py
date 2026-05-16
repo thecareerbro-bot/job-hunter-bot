@@ -4,6 +4,7 @@ import time
 from urllib.parse import urljoin, urlparse
 import urllib3
 import os
+import random
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -210,21 +211,46 @@ def get_clean_filename(url):
     path = urlparse(url).path
     return os.path.basename(path)
 
+# ---- క్రొత్త ఫీచర్: ఫేక్ బ్రౌజర్ హెడర్స్ ని క్రియేట్ చేసే ఫంక్షన్ ----
+def get_human_headers():
+    user_agents = [
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:125.0) Gecko/20100101 Firefox/125.0",
+        "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36 Edg/124.0.0.0"
+    ]
+    return {
+        'User-Agent': random.choice(user_agents),
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
+        'Accept-Language': 'en-US,en;q=0.9,te;q=0.8',
+        'Accept-Encoding': 'gzip, deflate, br',
+        'Connection': 'keep-alive',
+        'Upgrade-Insecure-Requests': '1',
+        'Sec-Fetch-Dest': 'document',
+        'Sec-Fetch-Mode': 'navigate',
+        'Sec-Fetch-Site': 'none',
+        'Sec-Fetch-User': '?1',
+        'Cache-Control': 'max-age=0'
+    }
+
 def monitor():
     print("GitHub Action Scanning Started... 🚀")
     sent_filenames = load_memory()
     is_first_run = len(sent_filenames) == 0
-    
-    # ఎర్రర్స్ వచ్చి ఓపెన్ కాని సైట్స్ ని సేవ్ చేసుకోవడానికి లిస్ట్ 
     failed_urls = [] 
 
     for url in URLS:
         try:
-            headers = {'User-Agent': 'Mozilla/5.0'}
+            # ఇక్కడ మనం పైన రాసుకున్న ఫేక్ మనిషి హెడర్స్ ని పిలుస్తున్నాం
+            headers = get_human_headers()
+            
             response = requests.get(url, headers=headers, timeout=15, verify=False)
+            response.raise_for_status() # ఎర్రర్ వస్తే డైరెక్ట్ గా ఫెయిల్డ్ లిస్ట్ లోకి వెళ్ళిపోతుంది
+            
             soup = BeautifulSoup(response.text, 'html.parser')
-
             new_updates = []
+            
             for a in soup.find_all('a', href=True):
                 full_url = urljoin(url, a['href'])
                 fname = get_clean_filename(full_url)
@@ -242,18 +268,17 @@ def monitor():
                 requests.post(f"https://api.telegram.org/bot{TOKEN}/sendMessage", data={"chat_id": CHAT_ID, "text": alert, "parse_mode": "HTML"})
 
         except Exception as e:
-            print(f"Skipping {url} due to timeout/error.")
-            # ఓపెన్ కాని సైట్ ని మన లిస్ట్ లోకి యాడ్ చేస్తున్నాం
+            print(f"Skipping {url} due to blocking/timeout.")
             failed_urls.append(url)
             continue
         
-        time.sleep(1)
+        # బ్లాక్ అవ్వకుండా మనిషిలాగా 2 నుండి 4 సెకన్ల మధ్యలో గ్యాప్ తీసుకునేలా చేసాం
+        time.sleep(random.uniform(2, 4))
 
     # ---- స్కిప్ అయిన సైట్స్ లిస్ట్ ని టెలిగ్రామ్ కి పంపడం ----
     if failed_urls:
         print(f"Sending {len(failed_urls)} failed URLs to Telegram...")
         
-        # టెలిగ్రామ్ మెసేజ్ లిమిట్ దాటకుండా, ప్రతి 30 లింక్స్ ని ఒక మెసేజ్ లా పంపుతున్నాం
         chunk_size = 30
         for i in range(0, len(failed_urls), chunk_size):
             chunk = failed_urls[i:i+chunk_size]
@@ -261,7 +286,7 @@ def monitor():
             alert_msg = f"⚠️ <b>స్కిప్ అయిన సైట్స్ (Failed URLs) - Part {i//chunk_size + 1}:</b>\n\n{failed_msg}"
             
             requests.post(f"https://api.telegram.org/bot{TOKEN}/sendMessage", data={"chat_id": CHAT_ID, "text": alert_msg, "parse_mode": "HTML"})
-            time.sleep(2) # మెసేజ్ బ్లాక్ అవ్వకుండా 2 సెకన్ల గ్యాప్
+            time.sleep(2)
 
     print("Scanning complete. Exiting successfully. ✅")
 
