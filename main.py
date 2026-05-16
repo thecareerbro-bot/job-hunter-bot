@@ -46,7 +46,7 @@ URLS = [
     "https://esb.mp.gov.in/tacs/tacs_n.htm", "https://esb.mp.gov.in/results/results_n.htm",
     "https://npsc.nagaland.gov.in/", "https://gpssb.gujarat.gov.in/", "https://bpssc.bihar.gov.in/",
     "https://ssbodisha.ac.in/", "https://mpsc.mizoram.gov.in/", "https://sssc.uk.gov.in/",
-    "https://jssc.jharkhand.gov.in/", "https://apsche.ap.gov.in/",
+    "https://jssc.jharkhand.gov.in/", "https://apsche.ap.gov.in/", "https://ojas.gujarat.gov.in/",
 
     # ---- బ్యాంకులు & ఆర్ధిక సంస్థలు (Banks, Finance & Insurance) ----
     "https://www.acab.bank.in/", "https://www.idbi.bank.in/idbi-bank-careers-current-openings.aspx",
@@ -89,8 +89,8 @@ URLS = [
     "https://www.tgtransco.com/index.php/what-s-new-3", "https://www.ecil.co.in/jobopenings",
     "https://bescom.karnataka.gov.in/#", "https://gsrtc.in/site/downloads/innerPages/recruitment.html",
     "https://scr.indianrailways.gov.in/", "https://scr.onlineregister.org.in/home",
-    "https://www.rrbapply.gov.in/", "https://aweil.in/", "https://rrbsecunderabad.gov.in/",
-    "https://rrbbilaspur.gov.in/", "https://secr.indianrailways.gov.in/view_section.jsp?lang=0&id=0,2,1903,219",
+    "https://www.rrbapply.gov.in/", "https://www.rrbapply.gov.in/#/auth/landing", "https://aweil.in/", "https://rrbsecunderabad.gov.in/",
+    "https://rrbbilaspur.gov.in/", "https://secr.indianrailways.gov.in/view_section.jsp?lang=0&id=0,2,1903,219", "https://secr.indianrailways.gov.in/?lan",
     "https://rlda.indianrailways.gov.in/", "https://www.isro.gov.in/Careers.html", "https://fci.gov.in/personnel.php?view=333", 
     "https://ongcindia.com/web/eng/career/recruitment-notice", "https://careers.ntpc.co.in/", 
     "https://www.ntpc.co.in/", "https://www.ntpc.co.in/jobs-ntpc",
@@ -101,7 +101,7 @@ URLS = [
     "https://midhani-india.in/department_name/hrd-careers/", "https://www.powergrid.in/job-opportunities", 
     "https://www.powergrid.in/", "https://www.rites.com/vacancies",
     "https://scclmines.com/scclnew/careers_Notification.asp", "https://www.apgenco.co.in/home/careers",
-    "https://nhai.gov.in/#/vacancies", "https://www.bsnl.co.in/opencms/bsnl/BSNL/about_us/hrd/jobs.html",
+    "https://nhai.gov.in/#/vacancies", "https://nhai.gov.in/#/", "https://www.bsnl.co.in/opencms/bsnl/BSNL/about_us/hrd/jobs.html",
     "https://www.nmdc.co.in/careers", "https://www.nmdc.co.in/", "https://www.vizagsteel.com/myindex.asp?tm=9&url=code/tenders/viewjobadds.asp",
     "https://www.irctc.com/human-resources.html", "https://concorindia.co.in/careers.asp",
     "https://www.nhpcindia.com/career", "https://www.nhpcindia.com/", "https://sjvn.nic.in/career",
@@ -110,7 +110,7 @@ URLS = [
     "https://www.hudco.org.in/careers", "https://uidai.gov.in/en/about-uidai/work-with-uidai.html",
     "https://www.iffco.in/en/corporate", "https://www.gujaratmetrorail.com/", "https://opalindia.in/",
     "https://alimco.in/", "https://recruitment.eil.co.in/", "https://www.oil-india.com/advertisement-list",
-    "https://fact.co.in/home/Dynamicpages?MenuId=90", "https://engineersindia.com/",
+    "https://fact.co.in/home/Dynamicpages?MenuId=90", "https://engineersindia.com/", "https://hrrl.in/Hrrl/home.jsp",
 
     # ---- విద్యుత్ సంస్థలు (State Power Boards) ----
     "https://www.uppcl.org/uppcl/en/article/vacancyresults", "https://www.tangedco.gov.in/hr-recruitment.html",
@@ -118,7 +118,7 @@ URLS = [
     "https://energy.rajasthan.gov.in/rvpnl/#/home/career", "https://www.gsecl.in/careers",
     "https://wbsetcl.in/career.html", "https://www.bspcl.co.in/Employment.aspx",
     "https://optcl.co.in/View/Careers.aspx", "https://kseb.in/index.php/careers",
-    "https://pspcl.in/", "https://cescmysore.karnataka.gov.in/",
+    "https://pspcl.in/", "https://cescmysore.karnataka.gov.in/", "https://gescom.karnataka.gov.in/",
 
     # ---- యూనివర్సిటీలు, IITs & విద్యా సంస్థలు (Universities, IITs, NITs) ----
     "https://keralacseb.kerala.gov.in/?cat=98", "https://keralacseb.kerala.gov.in/?cat=100",
@@ -128,8 +128,8 @@ URLS = [
     "https://dmer.maharashtra.gov.in/english/advertisement-2025-26/non-teaching-contractual/",
     "https://sanskrit.nic.in/recruitments_notifications.php", 
     "https://navodaya.gov.in/nvs/en/Recruitment/Notification-Vacancies/", "https://navodaya.gov.in/nvs/en/Home1/",
-    "https://kvsangathan.nic.in/employment-notice/", "https://www.iitb.ac.in/en/careers/staff-recruitment", 
-    "https://home.iitd.ac.in/jobs-iitd/index.php", "https://www.iitm.ac.in/notices", 
+    "https://navodaya.gov.in/nvs/nvs-school/CHANDIGARH", "https://kvsangathan.nic.in/employment-notice/", 
+    "https://www.iitb.ac.in/en/careers/staff-recruitment", "https://home.iitd.ac.in/jobs-iitd/index.php", "https://www.iitm.ac.in/notices", 
     "https://www.iitkgp.ac.in/non-teaching-positions", "https://www.iitk.ac.in/new/recruitment", 
     "https://iitr.ac.in/Careers/index.html", "https://nitw.ac.in/path/?dept=/jobs", 
     "https://www.nitk.ac.in/careers", "https://www.uohyd.ac.in/careers-uoh/", 
@@ -164,7 +164,7 @@ URLS = [
     "https://www.grse.in/job-opportunities/", "https://goashipyard.in/careers/advertisement/", 
     "https://www.chennaiport.gov.in/careers", "https://www.mptgoa.gov.in/careers/", 
     "https://vpt.ap.nic.in/Careers.aspx", "https://www.syama-prasad-mookerjee-port-kolkata.gov.in/careers", 
-    "https://www.pawanahans.co.in/career.aspx",
+    "https://www.pawanahans.co.in/career.aspx", "https://www.aaiclas.aero/",
 
     # ---- ఇతర బోర్డులు, మున్సిపల్ కార్పొరేషన్లు & సబార్డినేట్ సర్వీసెస్ (Other Subordinate Boards) ----
     "https://upbocw.in/English/index.aspx", "https://sswcd.punjab.gov.in/en/advertisement-for-recruitment-of-aww-awh-and-state-commissioner",
@@ -172,7 +172,7 @@ URLS = [
     "https://jrhms.jharkhand.gov.in/Career/List", "https://ossc.gov.in/Public/OSSC/Default.aspx",
     "https://sundargarh.odisha.gov.in/en/notices/notifications", "https://sundargarh.odisha.gov.in/en/notice/results",
     "https://sundargarh.odisha.gov.in/en/notice/recruitment", "https://gsssb.gujarat.gov.in/News/Index", 
-    "https://gsssb.gujarat.gov.in/Notification", "https://dsssb.delhi.gov.in/notifications", 
+    "https://gsssb.gujarat.gov.in/Index", "https://gsssb.gujarat.gov.in/Notification", "https://dsssb.delhi.gov.in/notifications", 
     "https://portal.centralselectionboard.com/notice/", "https://rural.assam.gov.in/", 
     "https://nmmc.gov.in/additional-content/Jobs", "https://csc.gov.in/careers", 
     "https://www.suratmunicipal.gov.in/Information/RecruitmentDashboard", "https://hmda.gov.in/notifications.aspx", 
@@ -213,13 +213,14 @@ def get_clean_filename(url):
 def monitor():
     print("GitHub Action Scanning Started... 🚀")
     sent_filenames = load_memory()
-    
     is_first_run = len(sent_filenames) == 0
+    
+    # ఎర్రర్స్ వచ్చి ఓపెన్ కాని సైట్స్ ని సేవ్ చేసుకోవడానికి లిస్ట్ 
+    failed_urls = [] 
 
     for url in URLS:
         try:
             headers = {'User-Agent': 'Mozilla/5.0'}
-            # 15 సెకన్ల టైమ్-అవుట్ సెట్ చేశాం. ఓపెన్ అవ్వకపోతే వదిలేసి తర్వాతి సైట్‌కి వెళ్తుంది.
             response = requests.get(url, headers=headers, timeout=15, verify=False)
             soup = BeautifulSoup(response.text, 'html.parser')
 
@@ -242,10 +243,25 @@ def monitor():
 
         except Exception as e:
             print(f"Skipping {url} due to timeout/error.")
+            # ఓపెన్ కాని సైట్ ని మన లిస్ట్ లోకి యాడ్ చేస్తున్నాం
+            failed_urls.append(url)
             continue
         
-        # బ్లాక్ అవ్వకుండా, ఒక్కో సైట్‌కి మధ్య 1 సెకను గ్యాప్
         time.sleep(1)
+
+    # ---- స్కిప్ అయిన సైట్స్ లిస్ట్ ని టెలిగ్రామ్ కి పంపడం ----
+    if failed_urls:
+        print(f"Sending {len(failed_urls)} failed URLs to Telegram...")
+        
+        # టెలిగ్రామ్ మెసేజ్ లిమిట్ దాటకుండా, ప్రతి 30 లింక్స్ ని ఒక మెసేజ్ లా పంపుతున్నాం
+        chunk_size = 30
+        for i in range(0, len(failed_urls), chunk_size):
+            chunk = failed_urls[i:i+chunk_size]
+            failed_msg = "\n".join(chunk)
+            alert_msg = f"⚠️ <b>స్కిప్ అయిన సైట్స్ (Failed URLs) - Part {i//chunk_size + 1}:</b>\n\n{failed_msg}"
+            
+            requests.post(f"https://api.telegram.org/bot{TOKEN}/sendMessage", data={"chat_id": CHAT_ID, "text": alert_msg, "parse_mode": "HTML"})
+            time.sleep(2) # మెసేజ్ బ్లాక్ అవ్వకుండా 2 సెకన్ల గ్యాప్
 
     print("Scanning complete. Exiting successfully. ✅")
 
